@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .flex {
+        display: flex;
+      }
+      .flex > label {
+        width: 100px;
+      }
+      .flex > * {
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <label for="url">URL:</label>
+      <input type="text" id="url" />
+      <button id="go">GO and COPY</button>
+    </div>
+    <div class="flex">
+      <label for="localhost">localhost:</label>
+      <input type="text" id="localhost" value="http://localhost:8888" />
+    </div>
+    <div class="flex">
+      <label>new URL:</label>
+      <input type="text" id="new-url" value="" readonly />
+      <button id="copy">COPY</button>
+    </div>
+    <div id="message"></div>
+    <script>
+      let urlElem = document.getElementById("url");
+      let newUrlElem = document.getElementById("new-url");
+      let localElem = document.getElementById("localhost");
+      let messageElem = document.getElementById("message");
+
+      function copyToClipboard(text) {
+        if (text) {
+          navigator.clipboard.writeText(text).then(() => {
+            messageElem.innerHTML = `${Date.now()}: copied`;
+          });
+        } else {
+          messageElem.innerHTML = `${Date.now()}: empty`;
+        }
+      }
+
+      document.getElementById("go").addEventListener("click", () => {
+        if (urlElem.value.startsWith("http://") || urlElem.value.startsWith("https://")) {
+          newUrlElem.value = `${localElem.value}?redirect=${encodeURIComponent(urlElem.value || "")}`;
+          copyToClipboard(newUrlElem.value);
+        } else {
+          messageElem.innerHTML = `${Date.now()}: must starts with "http://" or "https://"`;
+        }
+      });
+
+      document.getElementById("copy").addEventListener("click", () => {
+        copyToClipboard(newUrlElem.value);
+      });
+    </script>
+  </body>
+</html>
