@@ -4,6 +4,8 @@
 
 ## 方法一：nginx 代理
 
+<iframe src="https://gene9831.github.io/no-aDrive-client/index.html" width='100%'></iframe>
+
 ## 方法二：ffplay
 
 ## 准备
