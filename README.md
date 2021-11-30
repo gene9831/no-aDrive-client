@@ -4,7 +4,7 @@
 
 ## 方法一：nginx 代理
 
-<iframe src="https://gene9831.github.io/no-aDrive-client/index.html" width='100%'></iframe>
+[链接转换](https://gene9831.github.io/no-aDrive-client/index.html)
 
 ## 方法二：ffplay
 
