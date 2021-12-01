@@ -17,7 +17,7 @@ PC 网页上提取文件链接，使用 [TamperMonkey 插件](https://chrome.goo
 
 nginx 中的反向代理是可以使用 `proxy_set_header` 指令来设置额外的头部。大致流程是，将阿里云资源链接进行 `URLEncode`，当作 query 参数。例如：
 
-```http
+```txt
 http://localhost:8888/?redirect=URL_ENCODED
 ```
 
