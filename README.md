@@ -13,7 +13,11 @@ PC 网页上提取文件链接，使用 [TamperMonkey 插件](https://chrome.goo
 
 下面介绍两个方法如何添加头部并使用播放器播放
 
-### 方法一：nginx 代理（推荐使用）
+### 方法一：使用 PotPlayer 插件（推荐使用）
+
+具体步骤请移步到[这里](https://github.com/gene9831/AliyunDrivePotPlayer)
+
+### 方法二：nginx 代理
 
 nginx 中的反向代理是可以使用 `proxy_set_header` 指令来设置额外的头部。大致流程是，将阿里云资源链接进行 `URLEncode`，当作 query 参数。例如：
 
@@ -36,7 +40,7 @@ docker run -d --name nginx-adrive -p 8888:80 \
 
 使用[链接转换](https://gene9831.github.io/no-aDrive-client/index.html)，将阿里云资源转接转换成本地可播放链接
 
-### 方法二：ffplay
+### 方法三：ffplay
 
 下载[ffmpeg](https://ffmpeg.org/download.html) 需要用到里面的 ffplay，一个万能本地播放器
 
@@ -87,4 +91,11 @@ ffplay 常用快捷键 [reference](https://www.cnblogs.com/vkSwift/p/13946727.ht
 ```http
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36 Edg/96.0.1054.34
 Referer: https://www.aliyundrive.com/
+```
+
+```powershell
+docker run -d --name adrive-proxy -p 8888:80 `
+           -v C:/Users/gene/Projects/tools/no-aDrive-client/nginx-adrive/nginx.conf:/etc/nginx/nginx.conf `
+           -v C:/Users/gene/Projects/tools/no-aDrive-client/nginx-adrive/njs:/etc/nginx/njs `
+           nginx
 ```
